@@ -1,6 +1,8 @@
 Bacteria [] colony;
 boolean glow = false;
-int pos = 150;
+int posX = 150;
+int posY = 75;
+int tick = 100;
 void setup()   
 {     
 	frameRate(100);
@@ -22,8 +24,9 @@ void draw()
 		fill(255, 255, 0);
 		textSize(200);
 		rotate(PI/4);
-		pos += (int)(Math.random()*3) - 1;
-		text("GLOW", pos, 75);
+		posX += (int)(Math.random()*3) - 1;
+		posY += (int)(Math.random()*3) - 1;
+		text("GLOW", posX, posY);
 		rotate(-PI/4);
 	}
 	for(int i = 0; i < colony.length; i++){
@@ -74,9 +77,11 @@ class Bacteria
 	}
 }
 void mousePressed(){
+	tick+=500;
 	if(glow == false){
 		glow = true;
 	}else if(glow == true){
+		frameRate(tick);
 		glow = false;
 	}
 }
